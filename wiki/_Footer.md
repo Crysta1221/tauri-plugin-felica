@@ -1,5 +1,5 @@
 ---
 
 <div align="center">
-  <sub>tauri-plugin-felica • Licensed under MIT OR Apache-2.0</sub>
+  <sub>tauri-plugin-felica • Licensed under MIT</sub>
 </div>

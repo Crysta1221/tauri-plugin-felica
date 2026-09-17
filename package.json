@@ -1,8 +1,9 @@
 {
   "name": "tauri-plugin-felica-api",
   "version": "0.1.0",
-  "description": "",
+  "description": "TypeScript API for tauri-plugin-felica",
   "author": "Crysta1221",
+  "license": "MIT",
   "packageManager": "bun@1.4.2",
   "files": [
     "dist-js",
