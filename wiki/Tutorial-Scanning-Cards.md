@@ -20,7 +20,7 @@ sequenceDiagram
     Plugin-->>App: リーダー一覧 ([ReaderInfo])
     App->>Plugin: FelicaReader.connect({ id })
     Plugin-->>App: reader セッション確立
-    
+
     rect rgb(240, 248, 255)
         Note over App, HW: カード待機 & スキャン
         App->>Plugin: reader.scan({ timeoutMs: 10000 })
@@ -50,7 +50,9 @@ async function readCardSample() {
   // 1. 接続されている PaSoRi を検出
   const readers = await FelicaReader.list();
   if (readers.length === 0) {
-    console.error("PaSoRi リーダーが見つかりません。USB接続を確認してください。");
+    console.error(
+      "PaSoRi リーダーが見つかりません。USB接続を確認してください。",
+    );
     return;
   }
 
@@ -70,12 +72,14 @@ async function readCardSample() {
 
     // 交通系 IC の場合
     if (result.transit) {
-      console.log(`【交通系IC】残高: ¥${result.transit.balance?.toLocaleString()}`);
+      console.log(
+        `【交通系IC】残高: ¥${result.transit.balance?.toLocaleString()}`,
+      );
       for (const history of result.transit.histories) {
         const entry = history.entry?.label ?? "未記録";
         const exit = history.exit?.label ?? "未記録";
         console.log(
-          `[${history.date}] ${history.processType.label}: ${entry} → ${exit} (残高: ¥${history.balance})`
+          `[${history.date}] ${history.processType.label}: ${entry} → ${exit} (残高: ¥${history.balance})`,
         );
       }
     }
@@ -100,7 +104,6 @@ async function readCardSample() {
         console.log(`ポイント: ${result.nanaco.points} pt`);
       }
     }
-
   } catch (err) {
     if (err instanceof FelicaError) {
       if (err.code === "SCAN_TIMEOUT") {
@@ -127,7 +130,7 @@ async function readCardSample() {
 `reader.scan(options)` には以下のオプションを指定できます。
 
 | プロパティ | 型 | 既定値 | 説明 |
-| :--- | :--- | :--- | :--- |
+| :-- | :-- | :-- | :-- |
 | `timeoutMs` | `number` | なし (無限待機) | カードが検出されるまでのタイムアウト（ミリ秒）。カード検出後のデータ読み取り処理には適用されません。 |
 | `targets` | `FelicaType[]` | すべて | 読み取り対象の製品を指定します（例: `[FelicaTypes.TRANSIT]`）。対象外の製品ブロックの読み取りをスキップして高速化できます。 |
 | `require` | `boolean` | `false` | `true` の場合、`targets` に合致するカードがかざされるまで待機を継続します。`false` の場合、異なるカードがかざされると即座に `CARD_TYPE_MISMATCH` エラーをスローします。 |
@@ -141,7 +144,7 @@ import { FelicaReader, FelicaTypes } from "tauri-plugin-felica-api";
 
 const result = await reader.scan({
   targets: [FelicaTypes.TRANSIT], // 交通系ICのみ読み取る
-  require: true,                  // 交通系ICがかざされるまで待機する
+  require: true, // 交通系ICがかざされるまで待機する
   timeoutMs: 15000,
 });
 ```
@@ -226,7 +229,9 @@ export function CardScanner() {
       } else if (err instanceof FelicaError && err.code === "SCAN_TIMEOUT") {
         setErrorMessage("タイムアウトしました。カードをかざしてください。");
       } else {
-        setErrorMessage(err instanceof Error ? err.message : "エラーが発生しました。");
+        setErrorMessage(
+          err instanceof Error ? err.message : "エラーが発生しました。",
+        );
       }
     } finally {
       if (reader) {
@@ -249,9 +254,9 @@ export function CardScanner() {
   }, []);
 
   return (
-    <div className="card-scanner">
+    <div className='card-scanner'>
       <h2>FeliCa カードリーダー</h2>
-      
+
       {!isScanning ? (
         <button onClick={startScan}>スキャン開始</button>
       ) : (
@@ -262,7 +267,7 @@ export function CardScanner() {
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
       {scanResult && (
-        <div className="result">
+        <div className='result'>
           <h3>読み取り完了</h3>
           <p>IDm: {scanResult.idm}</p>
           {scanResult.transit && (

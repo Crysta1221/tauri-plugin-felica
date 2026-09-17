@@ -8,10 +8,8 @@
 
 低レベルアクセスには、手軽な**ワンショット読み取り**と、詳細な制御が可能な**カード対話セッション**の 2 つの方法があります。
 
-1. **ワンショット読み取り (`reader.read()`)**
-   指定したシステム・サービス・ブロックのデータを 1 回の呼び出しで一括取得します。
-2. **カード対話セッション (`reader.poll()` → `FelicaCard`)**
-   カードとの接続を維持したまま、サービスの探索や検証、特定ブロックの読み取りを対話的に実行します。
+1. **ワンショット読み取り (`reader.read()`)** 指定したシステム・サービス・ブロックのデータを 1 回の呼び出しで一括取得します。
+2. **カード対話セッション (`reader.poll()` → `FelicaCard`)** カードとの接続を維持したまま、サービスの探索や検証、特定ブロックの読み取りを対話的に実行します。
 
 ---
 
@@ -52,16 +50,13 @@ try {
 
 ## 2. カード対話セッション (`reader.poll()`)
 
-`reader.poll()` を呼び出すと、カードを捕捉して `FelicaCard` インスタンスが返されます。
-このインスタンスを通じて、カードに対する詳細な FeliCa コマンドを発行できます。
+`reader.poll()` を呼び出すと、カードを捕捉して `FelicaCard` インスタンスが返されます。このインスタンスを通じて、カードに対する詳細な FeliCa コマンドを発行できます。
 
 ```typescript
 const card = await reader.poll(); // 省略時はシステム 0 (ワイルドカード) でポーリング
 ```
 
-> [!IMPORTANT]
-> `FelicaCard` を取得している間はリーダーの排他権を保持します。
-> 操作が完了したら、必ず `await card.release()` を呼び出して解放してください。
+> [!IMPORTANT] `FelicaCard` を取得している間はリーダーの排他権を保持します。操作が完了したら、必ず `await card.release()` を呼び出して解放してください。
 
 ### サービスコードの存在確認 (`card.requestService()`)
 
@@ -73,7 +68,7 @@ const statusList = await card.requestService([0x008b, 0x090f, 0x108f]);
 
 for (const status of statusList) {
   console.log(
-    `サービス 0x${status.serviceCode.toString(16)}: 存在=${status.exists}, 鍵バージョン=0x${status.keyVersion.toString(16)}`
+    `サービス 0x${status.serviceCode.toString(16)}: 存在=${status.exists}, 鍵バージョン=0x${status.keyVersion.toString(16)}`,
   );
 }
 ```
@@ -90,7 +85,7 @@ const nodes = await card.searchServices({ from: 0, max: 32 });
 
 for (const node of nodes) {
   console.log(
-    `[Index ${node.index}] 種別: ${node.kind}, コード: 0x${node.code.toString(16)}`
+    `[Index ${node.index}] 種別: ${node.kind}, コード: 0x${node.code.toString(16)}`,
   );
 }
 ```
@@ -148,13 +143,12 @@ async function inspectCard() {
       console.log(
         `検出されたシステムコード: ${card.systemCodes
           .map((c) => `0x${c.toString(16).padStart(4, "0")}`)
-          .join(", ")}`
+          .join(", ")}`,
       );
 
       // サービス探索
       const nodes = await card.searchServices();
       console.log(`発見されたサービス/エリア数: ${nodes.length}`);
-
     } finally {
       // 必ずカードを解放
       await card.release();

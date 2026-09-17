@@ -19,7 +19,7 @@ if (result.transit) {
 ### 主要なプロパティ
 
 | プロパティ | 型 | 説明 |
-| :--- | :--- | :--- |
+| :-- | :-- | :-- |
 | `balance` | `number \| undefined` | カードの現在残高（円単位） |
 | `seqNumber` | `number \| undefined` | カードの最終取引通番 |
 | `settings` | `TransitSettings \| undefined` | カードの設定フラグ（タッチでGo、音声案内、SF外定期利用の有効/無効） |
@@ -34,11 +34,11 @@ if (result.transit) {
 
 ```typescript
 for (const entry of result.transit.histories) {
-  console.log(`日付: ${entry.date}`);                   // "2026-03-15"
-  console.log(`端末: ${entry.terminalType.label}`);      // 例: "改札機", "精算機", "車載機"
-  console.log(`処理: ${entry.processType.label}`);       // 例: "入場・出場", "精算", "オートチャージ"
-  console.log(`支払: ${entry.paymentType.label}`);       // 例: "運賃引き去り", "チャージ"
-  
+  console.log(`日付: ${entry.date}`); // "2026-03-15"
+  console.log(`端末: ${entry.terminalType.label}`); // 例: "改札機", "精算機", "車載機"
+  console.log(`処理: ${entry.processType.label}`); // 例: "入場・出場", "精算", "オートチャージ"
+  console.log(`支払: ${entry.paymentType.label}`); // 例: "運賃引き去り", "チャージ"
+
   if (entry.entry && entry.exit) {
     // 鉄道利用の場合
     console.log(`区間: ${entry.entry.label} → ${entry.exit.label}`);
@@ -55,7 +55,9 @@ for (const entry of result.transit.histories) {
 ```
 
 #### 駅名の自動補完について (`StationRef`)
+
 本プラグインには全国の JR・私鉄・地下鉄の線区コード・駅順コードの辞書が組み込まれています。
+
 - `label`: 解決された駅名（例: `"東京"`, `"新宿"`）。
 - 地区情報（JR東日本/東海/西日本等）が特定できない場合は、`candidates` に候補一覧が保持され、`label` には候補の駅名が記載されます。
 
@@ -77,19 +79,21 @@ if (result.waon) {
   }
 
   for (const h of card.histories) {
-    console.log(`[${h.dateTime?.date} ${h.dateTime?.time}] 利用額: ¥${h.amount} (残高: ¥${h.balance})`);
+    console.log(
+      `[${h.dateTime?.date} ${h.dateTime?.time}] 利用額: ¥${h.amount} (残高: ¥${h.balance})`,
+    );
   }
 }
 ```
 
 ### 主要なプロパティ
 
-| プロパティ | 型 | 説明 |
-| :--- | :--- | :--- |
-| `balance` | `number` | 現在の残高 |
-| `points` | `number \| undefined` | センター預かり外のカード内ポイント |
-| `waonNumber` | `string \| undefined` | WAON カード番号（16桁） |
-| `histories` | `WaonHistoryEntry[]` | 利用履歴（最大 3 件の決済ペアデータ） |
+| プロパティ   | 型                    | 説明                                  |
+| :----------- | :-------------------- | :------------------------------------ |
+| `balance`    | `number`              | 現在の残高                            |
+| `points`     | `number \| undefined` | センター預かり外のカード内ポイント    |
+| `waonNumber` | `string \| undefined` | WAON カード番号（16桁）               |
+| `histories`  | `WaonHistoryEntry[]`  | 利用履歴（最大 3 件の決済ペアデータ） |
 
 ---
 
@@ -106,17 +110,19 @@ if (result.edy) {
   }
 
   for (const h of card.histories) {
-    console.log(`[${h.date} ${h.time}] 取引: ¥${h.amount} (残高: ¥${h.balance})`);
+    console.log(
+      `[${h.date} ${h.time}] 取引: ¥${h.amount} (残高: ¥${h.balance})`,
+    );
   }
 }
 ```
 
 ### 主要なプロパティ
 
-| プロパティ | 型 | 説明 |
-| :--- | :--- | :--- |
-| `balance` | `number` | 現在の残高 |
-| `edyNumber` | `string \| undefined` | 16桁の Edy 番号 |
+| プロパティ  | 型                     | 説明                        |
+| :---------- | :--------------------- | :-------------------------- |
+| `balance`   | `number`               | 現在の残高                  |
+| `edyNumber` | `string \| undefined`  | 16桁の Edy 番号             |
 | `histories` | `EmoneyHistoryEntry[]` | 直近の取引履歴（最大 6 件） |
 
 ---
@@ -137,26 +143,27 @@ if (result.nanaco) {
   }
 
   for (const h of card.histories) {
-    console.log(`[${h.date} ${h.time}] 取引: ¥${h.amount} (残高: ¥${h.balance})`);
+    console.log(
+      `[${h.date} ${h.time}] 取引: ¥${h.amount} (残高: ¥${h.balance})`,
+    );
   }
 }
 ```
 
 ### 主要なプロパティ
 
-| プロパティ | 型 | 説明 |
-| :--- | :--- | :--- |
-| `balance` | `number` | 現在の残高 |
-| `points` | `number \| undefined` | nanaco ポイント |
-| `nanacoNumber` | `string \| undefined` | 16桁の nanaco 番号 |
-| `histories` | `EmoneyHistoryEntry[]` | 直近の取引履歴（最大 5 件） |
+| プロパティ     | 型                     | 説明                        |
+| :------------- | :--------------------- | :-------------------------- |
+| `balance`      | `number`               | 現在の残高                  |
+| `points`       | `number \| undefined`  | nanaco ポイント             |
+| `nanacoNumber` | `string \| undefined`  | 16桁の nanaco 番号          |
+| `histories`    | `EmoneyHistoryEntry[]` | 直近の取引履歴（最大 5 件） |
 
 ---
 
 ## 5. QUICPay (`QuicpayCard`)
 
-QUICPay は後払い式（ポストペイ）規格であり、カード内に公開された無鍵残高サービスが存在しません。
-本プラグインでは、専用システムコード（`0x04C1`）に対する応答を検出し、QUICPay カードであることの識別を行います。
+QUICPay は後払い式（ポストペイ）規格であり、カード内に公開された無鍵残高サービスが存在しません。本プラグインでは、専用システムコード（`0x04C1`）に対する応答を検出し、QUICPay カードであることの識別を行います。
 
 ```typescript
 if (result.quicpay) {
@@ -169,8 +176,7 @@ if (result.quicpay) {
 
 ## 6. FeliCa Lite / Lite-S (`LiteCard`)
 
-FeliCa Lite および Lite-S（システムコード `0x88B4`）の読み取りに対応しています。
-ユーザーが自由に読み書きできる公開無鍵領域であるスクラッチパッド（S_PAD0 〜 S_PAD13）のバイナリデータを取得できます。
+FeliCa Lite および Lite-S（システムコード `0x88B4`）の読み取りに対応しています。ユーザーが自由に読み書きできる公開無鍵領域であるスクラッチパッド（S_PAD0 〜 S_PAD13）のバイナリデータを取得できます。
 
 ```typescript
 if (result.lite) {

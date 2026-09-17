@@ -24,8 +24,7 @@ Wiki 用リポジトリ: https://github.com/<owner>/<repo>.wiki.git
 1. GitHub のリポジトリページを開き、**Settings** > **General** > **Features** に進みます。
 2. **Wikis** にチェックが入っていることを確認します。
 3. リポジトリ上部タブの **Wiki** を開き、「**Create the first page**」ボタンを押して最初のページ（内容はデフォルトのままで可）を保存します。
-   > [!IMPORTANT]
-   > 初回ページを GitHub 上で作成するまで、`<repo>.wiki.git` は生成されません。必ず一度保存を行ってください。
+   > [!IMPORTANT] 初回ページを GitHub 上で作成するまで、`<repo>.wiki.git` は生成されません。必ず一度保存を行ってください。
 
 ---
 
