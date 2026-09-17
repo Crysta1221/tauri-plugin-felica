@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-release-card"
+description = "Enables the release_card command without any pre-configured scope."
+commands.allow = ["release_card"]
+
+[[permission]]
+identifier = "deny-release-card"
+description = "Denies the release_card command without any pre-configured scope."
+commands.deny = ["release_card"]

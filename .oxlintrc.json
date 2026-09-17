@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": ["examples/**", "dist-js/**", "node_modules/**"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["src/typescript/labels/maps/**", "src/typescript/labels/cybernetics.ts"],
+      "rules": {
+        "eslint/max-lines": "off",
+        "eslint/max-lines-per-function": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@0.3.2
+  vite-plus: 0.3.2
+overrides:
+  vite@*: "catalog:"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
+# Parent repo (bun) also installs oxlint. Without a local copy at
+# examples/node_modules/oxlint, Node walks up and vp lint loads that
+# mismatched oxlint, which cannot import vite-plus from this package.
+publicHoistPattern:
+  - oxlint

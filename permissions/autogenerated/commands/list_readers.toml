@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-list-readers"
+description = "Enables the list_readers command without any pre-configured scope."
+commands.allow = ["list_readers"]
+
+[[permission]]
+identifier = "deny-list-readers"
+description = "Denies the list_readers command without any pre-configured scope."
+commands.deny = ["list_readers"]

@@ -1,0 +1,15 @@
+[default]
+description = "Default permissions for the plugin"
+permissions = [
+  "allow-list-readers",
+  "allow-connect-reader",
+  "allow-scan-card",
+  "allow-cancel-scan",
+  "allow-disconnect-reader",
+  "allow-read-blocks",
+  "allow-poll-card",
+  "allow-release-card",
+  "allow-request-service",
+  "allow-search-services",
+  "allow-select-system",
+]

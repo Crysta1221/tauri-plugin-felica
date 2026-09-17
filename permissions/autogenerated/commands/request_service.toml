@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-request-service"
+description = "Enables the request_service command without any pre-configured scope."
+commands.allow = ["request_service"]
+
+[[permission]]
+identifier = "deny-request-service"
+description = "Denies the request_service command without any pre-configured scope."
+commands.deny = ["request_service"]

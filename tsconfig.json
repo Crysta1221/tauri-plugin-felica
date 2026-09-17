@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": true,
+    "noEmit": true,
+    "paths": {
+      "tsdown": ["./node_modules/tsdown/dist/index.d.mts"]
+    }
+  },
+    "include": ["src/typescript/**/*.ts", "tsdown.config.ts"],
+  "exclude": ["dist-js", "node_modules"]
+}

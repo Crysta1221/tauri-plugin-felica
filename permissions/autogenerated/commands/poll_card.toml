@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-poll-card"
+description = "Enables the poll_card command without any pre-configured scope."
+commands.allow = ["poll_card"]
+
+[[permission]]
+identifier = "deny-poll-card"
+description = "Denies the poll_card command without any pre-configured scope."
+commands.deny = ["poll_card"]

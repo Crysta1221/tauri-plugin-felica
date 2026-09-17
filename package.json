@@ -1,0 +1,43 @@
+{
+  "name": "tauri-plugin-felica-api",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Crysta1221",
+  "packageManager": "bun@1.4.2",
+  "files": [
+    "dist-js",
+    "README.md"
+  ],
+  "type": "module",
+  "main": "./dist-js/index.cjs",
+  "module": "./dist-js/index.js",
+  "types": "./dist-js/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist-js/index.d.ts",
+      "import": "./dist-js/index.js",
+      "require": "./dist-js/index.cjs"
+    },
+    "./labels": {
+      "types": "./dist-js/labels.d.ts",
+      "import": "./dist-js/labels.js",
+      "require": "./dist-js/labels.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "lint": "oxlint src/typescript",
+    "generate:labels": "bun scripts/generate-labels.ts",
+    "prepublishOnly": "bun run build",
+    "pretest": "bun run build"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.11.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.0",
+    "oxlint": "^1.83.0",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2"
+  }
+}

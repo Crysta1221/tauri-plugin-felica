@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-scan-card"
+description = "Enables the scan_card command without any pre-configured scope."
+commands.allow = ["scan_card"]
+
+[[permission]]
+identifier = "deny-scan-card"
+description = "Denies the scan_card command without any pre-configured scope."
+commands.deny = ["scan_card"]
