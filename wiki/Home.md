@@ -27,7 +27,6 @@
 | **[低レベル API ガイド](Low-Level-API)** | `FelicaCard` を用いた直接通信、サービス探索、特定ブロックの読み取り |
 | **[対応ハードウェアと環境](Supported-Hardware)** | 対応する PaSoRi 一覧、通信仕様、接続優先度設定 |
 | **[トラブルシューティング](Troubleshooting)** | よくあるエラー（他アプリとの競合、権限エラー等）の原因と対策 |
-| **[Wiki の運用・同期](Wiki-Deployment)** | 本リポジトリの `wiki/` フォルダを GitHub Wiki に反映・同期する方法 |
 
 ---
 

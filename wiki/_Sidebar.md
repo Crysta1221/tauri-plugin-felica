@@ -7,7 +7,6 @@
 - **[低レベル API](Low-Level-API)**
 - **[対応ハードウェア](Supported-Hardware)**
 - **[トラブルシューティング](Troubleshooting)**
-- **[Wiki の運用](Wiki-Deployment)**
 
 ---
 
