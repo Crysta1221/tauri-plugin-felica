@@ -1,0 +1,53 @@
+name: Deploy Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wiki/**'
+      - '.github/workflows/wiki.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: wiki-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy-wiki:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Checkout wiki repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository }}.wiki
+          path: wiki-repo
+          token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+        id: checkout-wiki
+
+      - name: Sync wiki content
+        if: steps.checkout-wiki.outcome == 'success'
+        run: |
+          cd wiki-repo
+          rm -rf *
+          cp -r ../wiki/* .
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes in wiki to commit."
+          else
+            git commit -m "docs: sync wiki from repository [skip ci]"
+            git push origin HEAD
+          fi
+
+      - name: Notice if wiki repo is not initialized
+        if: steps.checkout-wiki.outcome != 'success'
+        run: |
+          echo "::warning::GitHub Wiki repository is not yet initialized or accessible. Please create the first page on GitHub Wiki Web UI first."
