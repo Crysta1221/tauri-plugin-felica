@@ -58,4 +58,3 @@ await reader.disconnect();
 ## License
 
 MIT
-
